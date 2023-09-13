@@ -37,3 +37,6 @@ const String passwordChanged = "changed 2 weeks ago";
 const String notFound = "Course not Found";
 const String trySearching =
     "Try searching the course with \na different keyword";
+const String courseNotSaved = "Course not saved";
+const String trySaving = "Try saving the course \nagain in a few minutes";
+const String continuee = "Continue";

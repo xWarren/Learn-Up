@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "457363044211",
+    "project_id": "learn-up-afd0e",
+    "storage_bucket": "learn-up-afd0e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:457363044211:android:6cf58fad674e68049b3706",
+        "android_client_info": {
+          "package_name": "com.war.learnup"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC42PhhleHXyPkZK0iYqL6ZnjTi5IC1u5w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

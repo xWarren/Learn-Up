@@ -16,16 +16,19 @@ class SearchPage extends StatelessWidget {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         elevation: 0,
-        leading: GestureDetector(
-            onTap: () {
-              Get.back();
-            },
-            child: Image.asset(Assets.back)),
+        leading: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: GestureDetector(
+              onTap: () {
+                Get.back();
+              },
+              child: Image.asset(Assets.back)),
+        ),
         title: TextFormField(
           decoration: InputDecoration(
               fillColor: colors.white,
               filled: true,
-              constraints: BoxConstraints.loose(const Size.fromHeight(50)),
+              constraints: BoxConstraints.loose(const Size.fromHeight(40)),
               suffixIcon: GestureDetector(
                   onTap: () {}, child: Image.asset(Assets.search)),
               focusedBorder: OutlineInputBorder(

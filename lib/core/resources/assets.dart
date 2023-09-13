@@ -38,4 +38,10 @@ class Assets {
   static const notify = "${path}ic_notify.png";
   static const search = "${path}ic_search.png";
   static const notFound = "${path}not_found.png";
+  static const notSaved = "${path}not_saved.png";
+  static const flutterLogo = "${path}flutter.png";
+  static const kotlinLogo = "${path}kotlin.png";
+  static const reactLogo = "${path}react.png";
+  static const heart = "${path}heart.png";
+  static const heartFilled = "${path}heart_filled.png";
 }
