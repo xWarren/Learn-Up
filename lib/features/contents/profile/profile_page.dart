@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:learnup/core/resources/assets.dart';
 
 import 'package:learnup/features/contents/profile/profile_controller.dart';
+import 'package:learnup/features/contents/profile/save_page.dart';
 import '../../../core/resources/colors.dart' as colors;
 import '../../../core/resources/strings.dart' as strings;
 import '../../../core/resources/text_styles.dart' as styles;
@@ -65,7 +66,9 @@ class ProfilePage extends GetView<ProfileController> {
             width: double.infinity,
             height: 70,
             child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(SavedPage(controller: controller));
+                },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: colors.white,
                     elevation: 0,
