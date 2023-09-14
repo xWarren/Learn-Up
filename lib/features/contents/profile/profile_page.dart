@@ -101,7 +101,7 @@ class ProfilePage extends GetView<ProfileController> {
           const SizedBox(height: 30),
           GestureDetector(
             onTap: () {
-              controller.logOut();
+              controller.logout();
             },
             child: const Text(
               strings.logout,

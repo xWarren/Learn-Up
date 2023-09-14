@@ -1,12 +1,19 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:learnup/core/data/models/courses_models.dart';
 
+import '../../../core/data/models/courses_models.dart';
+import '../../../core/data/models/info_models.dart';
 import '../../../core/resources/assets.dart';
+import '../profile/profile_controller.dart';
 
 class CoursesController extends GetxController {
   RxBool isFavorite1 = false.obs;
   RxBool isFavorite2 = false.obs;
   RxBool isFavorite3 = false.obs;
+  User? user = FirebaseAuth.instance.currentUser;
+  Rx<Info> loggedInUser = Info().obs;
+  final ProfileController profileController = Get.find();
 
   List courses = [
     CoursesModels(
@@ -37,5 +44,22 @@ class CoursesController extends GetxController {
 
   set isFavorite(bool value) {
     isFavorite = value;
+  }
+
+  @override
+  void onInit() {
+    update();
+    getUser();
+    super.onInit();
+  }
+
+  void getUser() {
+    FirebaseFirestore.instance
+        .collection("users")
+        .doc(user!.uid)
+        .get()
+        .then((value) {
+      loggedInUser.value = Info.fromMap(value.data());
+    });
   }
 }

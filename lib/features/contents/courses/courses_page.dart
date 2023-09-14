@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:learnup/core/resources/assets.dart';
 
 import 'package:learnup/features/contents/courses/courses_controller.dart';
 import 'package:learnup/features/contents/courses/search_page.dart';
+import '../../../core/resources/assets.dart';
 import '../../../core/resources/colors.dart' as colors;
-import '../../../core/resources/strings.dart' as strings;
 import '../../../core/resources/text_styles.dart' as styles;
 
 class CoursesPage extends GetView<CoursesController> {
@@ -24,19 +23,21 @@ class CoursesPage extends GetView<CoursesController> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Expanded(
+                    Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text("Hello,",
+                          const Text("Hello,",
                               style: TextStyle(
                                 fontSize: 16,
                                 color: colors.dark,
                               )),
-                          Text(
-                            strings.nameJuanita,
-                            style: styles.heading24,
-                          ),
+                          Obx(() {
+                            return Text(
+                              controller.loggedInUser.value.name.toString(),
+                              style: styles.heading24,
+                            );
+                          }),
                         ],
                       ),
                     ),
@@ -213,6 +214,14 @@ class CoursesPage extends GetView<CoursesController> {
                             GestureDetector(
                               onTap: () {
                                 data.isFavorite.value = !data.isFavorite.value;
+
+                                if (!data.isFavorite.value) {
+                                  controller.profileController
+                                      .addFavorite(data);
+                                } else {
+                                  controller.profileController
+                                      .removeFavorite(data);
+                                }
                               },
                               child: Image.asset(
                                 data.isFavorite.value
