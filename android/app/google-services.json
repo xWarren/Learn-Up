@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:457363044211:android:6cf58fad674e68049b3706",
+        "mobilesdk_app_id": "1:457363044211:android:095a1f383d2b4fbd9b3706",
         "android_client_info": {
-          "package_name": "com.war.learnup"
+          "package_name": "com.example.learnup"
         }
       },
       "oauth_client": [],

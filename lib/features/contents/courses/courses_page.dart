@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:learnup/core/resources/assets.dart';
 
 import 'package:learnup/features/contents/courses/courses_controller.dart';
 import 'package:learnup/features/contents/courses/search_page.dart';
+import '../../../core/resources/assets.dart';
 import '../../../core/resources/colors.dart' as colors;
-import '../../../core/resources/strings.dart' as strings;
 import '../../../core/resources/text_styles.dart' as styles;
 
 class CoursesPage extends GetView<CoursesController> {
@@ -18,64 +17,73 @@ class CoursesPage extends GetView<CoursesController> {
           automaticallyImplyLeading: false,
           elevation: 0,
           bottom: PreferredSize(
-              preferredSize: const Size.fromHeight(30),
+              preferredSize: const Size.fromHeight(90),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
                   children: [
-                    const Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Hello,",
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: colors.dark,
-                              )),
-                          Text(
-                            strings.nameJuanita,
-                            style: styles.heading24,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text("Hello,",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: colors.dark,
+                                  )),
+                              Obx(
+                                () => Text(
+                                  controller.loggedInUser.value.name.toString(),
+                                  style: styles.heading24,
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
+                        const SizedBox(height: 10),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 10),
+                          child: InkWell(
+                              borderRadius: BorderRadius.circular(20),
+                              onTap: () {},
+                              child: Image.asset(Assets.notify)),
+                        )
+                      ],
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Get.to(SearchPage(controller: controller),
+                            transition: Transition.native);
+                      },
+                      child: Container(
+                        height: 40,
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 20),
+                        decoration: ShapeDecoration(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                                side: const BorderSide(color: colors.gray))),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text("Search course",
+                                style: styles.paragraphMedium),
+                            Image.asset(Assets.search)
+                          ],
+                        ),
                       ),
                     ),
-                    const SizedBox(height: 10),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 10),
-                      child: InkWell(
-                          borderRadius: BorderRadius.circular(20),
-                          onTap: () {},
-                          child: Image.asset(Assets.notify)),
-                    )
                   ],
                 ),
               )),
         ),
         body: SingleChildScrollView(
             child: Column(mainAxisSize: MainAxisSize.min, children: [
-          GestureDetector(
-            onTap: () {
-              Get.to(SearchPage(controller: controller),
-                  transition: Transition.native);
-            },
-            child: Container(
-              height: 50,
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-              decoration: ShapeDecoration(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      side: const BorderSide(color: colors.gray))),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text("Search course", style: styles.paragraphMedium),
-                  Image.asset(Assets.search)
-                ],
-              ),
-            ),
-          ),
           const SizedBox(height: 10),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -213,6 +221,14 @@ class CoursesPage extends GetView<CoursesController> {
                             GestureDetector(
                               onTap: () {
                                 data.isFavorite.value = !data.isFavorite.value;
+
+                                if (!data.isFavorite.value) {
+                                  controller.profileController
+                                      .addFavorite(data);
+                                } else {
+                                  controller.profileController
+                                      .removeFavorite(data);
+                                }
                               },
                               child: Image.asset(
                                 data.isFavorite.value
