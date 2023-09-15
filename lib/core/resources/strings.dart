@@ -40,3 +40,4 @@ const String trySearching =
 const String courseNotSaved = "Course not saved";
 const String trySaving = "Try saving the course \nagain in a few minutes";
 const String continuee = "Continue";
+const String update = "Update";

@@ -66,4 +66,16 @@ class RegisterController extends GetxController {
         .collection('users')
         .add({'email': email, 'name': name});
   }
+
+  Future updateData(String email) async {
+    User? user = auth.currentUser;
+    Info userClass = Info();
+
+    //writing the value to send in server
+    userClass.email = user!.email;
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user.uid)
+        .update(userClass.email.toString() as Map<Object, Object?>);
+  }
 }

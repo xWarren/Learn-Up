@@ -10,7 +10,8 @@ class LoginController extends GetxController {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   RxBool obscureText = true.obs;
-
+  RxBool isLoading = false.obs;
+  RxString message = ''.obs;
   void toRegister() {
     Get.toNamed(Routes.register);
   }
@@ -24,7 +25,18 @@ class LoginController extends GetxController {
       try {
         await auth.signInWithEmailAndPassword(email: email, password: password);
         Future.delayed(3.seconds, () => Get.offAndToNamed(Routes.dashboard));
-      } catch (e) {}
+      } catch (e) {
+        // Check if it's a Firebase error
+        if (e is FirebaseException) {
+          // Extract the error message without the Firebase text
+          String errorMessage = e.message.toString();
+          // Now, you can display the error message
+          message.value = 'Login failed: $errorMessage';
+        } else {
+          // Handle non-Firebase errors differently
+          message.value = 'An error occurred: ${e.toString()}';
+        }
+      }
     }
   }
 }

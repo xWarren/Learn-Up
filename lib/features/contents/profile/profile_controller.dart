@@ -7,9 +7,9 @@ import '../../../core/routes/routes.dart';
 class ProfileController extends GetxController {
   final auth = FirebaseAuth.instance;
   var favorite = {}.obs;
-  void logout() async {
-    await auth.signOut();
-    Future.delayed(1.seconds, () => Get.offAndToNamed(Routes.login));
+  Future<void> signOut() async {
+    await FirebaseAuth.instance.signOut();
+    Future.delayed(3.seconds, () => Get.offAndToNamed(Routes.login));
   }
 
   void addFavorite(CoursesModels courses) {

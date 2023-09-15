@@ -29,6 +29,8 @@ class SearchPage extends StatelessWidget {
               fillColor: colors.white,
               filled: true,
               constraints: BoxConstraints.loose(const Size.fromHeight(40)),
+              contentPadding:
+                  const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
               suffixIcon: GestureDetector(
                   onTap: () {}, child: Image.asset(Assets.search)),
               focusedBorder: OutlineInputBorder(

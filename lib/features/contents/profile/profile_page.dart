@@ -28,87 +28,90 @@ class ProfilePage extends GetView<ProfileController> {
           style: styles.heading24,
         ),
       ),
-      body: Column(
-        children: [
-          const SizedBox(height: 30),
-          Center(
-            child: Container(
-              height: 170,
-              decoration: const ShapeDecoration(
-                  color: colors.lightGray,
-                  shape: CircleBorder(
-                      side:
-                          BorderSide(color: colors.secondaryColor, width: 3.0)),
-                  image: DecorationImage(image: AssetImage(Assets.avatar))),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            const SizedBox(height: 30),
+            Center(
+              child: Container(
+                height: 170,
+                decoration: const ShapeDecoration(
+                    color: colors.lightGray,
+                    shape: CircleBorder(
+                        side: BorderSide(
+                            color: colors.secondaryColor, width: 3.0)),
+                    image: DecorationImage(image: AssetImage(Assets.avatar))),
+              ),
             ),
-          ),
-          const SizedBox(height: 30),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            width: double.infinity,
-            height: 70,
-            child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: colors.white,
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                        side: const BorderSide(color: colors.gray))),
-                child: const Text(
-                  strings.yourCourses,
-                  style: styles.heading24,
-                )),
-          ),
-          const SizedBox(height: 10),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            width: double.infinity,
-            height: 70,
-            child: ElevatedButton(
-                onPressed: () {
-                  Get.to(SavedPage(controller: controller));
-                },
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: colors.white,
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                        side: const BorderSide(color: colors.gray))),
-                child: const Text(
-                  strings.saved,
-                  style: styles.heading24,
-                )),
-          ),
-          const SizedBox(height: 10),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            width: double.infinity,
-            height: 70,
-            child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: colors.white,
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                        side: const BorderSide(color: colors.gray))),
-                child: const Text(
-                  strings.payment,
-                  style: styles.heading24,
-                )),
-          ),
-          const SizedBox(height: 30),
-          GestureDetector(
-            onTap: () {
-              controller.logout();
-            },
-            child: const Text(
-              strings.logout,
-              style: styles.buttonSmall,
+            const SizedBox(height: 30),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              width: double.infinity,
+              height: 70,
+              child: ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: colors.white,
+                      elevation: 0,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                          side: const BorderSide(color: colors.gray))),
+                  child: const Text(
+                    strings.yourCourses,
+                    style: styles.heading24,
+                  )),
             ),
-          )
-        ],
+            const SizedBox(height: 10),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              width: double.infinity,
+              height: 70,
+              child: ElevatedButton(
+                  onPressed: () {
+                    Get.to(SavedPage(controller: controller));
+                  },
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: colors.white,
+                      elevation: 0,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                          side: const BorderSide(color: colors.gray))),
+                  child: const Text(
+                    strings.saved,
+                    style: styles.heading24,
+                  )),
+            ),
+            const SizedBox(height: 10),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              width: double.infinity,
+              height: 70,
+              child: ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: colors.white,
+                      elevation: 0,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                          side: const BorderSide(color: colors.gray))),
+                  child: const Text(
+                    strings.payment,
+                    style: styles.heading24,
+                  )),
+            ),
+            const SizedBox(height: 30),
+            GestureDetector(
+              onTap: () {
+                controller.signOut();
+              },
+              child: const Text(
+                strings.logout,
+                style: styles.buttonSmall,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

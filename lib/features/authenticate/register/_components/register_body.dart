@@ -20,6 +20,7 @@ class RegisterBody extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Image.asset(
               Assets.registerLogo,
+              height: 200,
               alignment: Alignment.center,
             ),
           ),
@@ -52,22 +53,27 @@ class RegisterBody extends StatelessWidget {
                 controller.nameController.text = value!;
               },
               decoration: InputDecoration(
-                  fillColor: colors.white,
-                  filled: true,
-                  hintText: strings.name,
-                  hintStyle: styles.paragraphMedium,
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 20),
-                  focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: const BorderSide(color: colors.gray)),
-                  enabledBorder: OutlineInputBorder(
+                fillColor: colors.white,
+                filled: true,
+                hintText: strings.name,
+                hintStyle: styles.paragraphMedium,
+                contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+                focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: colors.gray),
-                  ),
-                  errorBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: colors.gray),
-                  )),
+                    borderSide: const BorderSide(color: colors.gray)),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: const BorderSide(color: colors.gray),
+                ),
+                errorBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: const BorderSide(color: colors.gray),
+                ),
+                focusedErrorBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: const BorderSide(color: colors.gray),
+                ),
+              ),
             ),
           ),
           Padding(

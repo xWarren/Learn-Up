@@ -7,6 +7,8 @@ import 'package:learnup/features/contents/settings/settings_controller.dart';
 import '../../../core/resources/colors.dart' as colors;
 import '../../../core/resources/strings.dart' as strings;
 import '../../../core/resources/text_styles.dart' as styles;
+import '_components/email_page.dart';
+import '_components/name_page.dart';
 
 class SettingsPage extends GetView<SettingsController> {
   const SettingsPage({super.key});
@@ -86,7 +88,9 @@ class SettingsPage extends GetView<SettingsController> {
               ),
               const SizedBox(height: 10),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Get.to(NamePage(controller: controller));
+                },
                 child: Container(
                   height: 70,
                   width: double.infinity,
@@ -116,9 +120,12 @@ class SettingsPage extends GetView<SettingsController> {
                                   strings.name,
                                   style: styles.heading20,
                                 ),
-                                Text(
-                                  controller.loggedInUser.value.name.toString(),
-                                  style: styles.paragraphMedium,
+                                Obx(
+                                  () => Text(
+                                    controller.loggedInUser.value.name
+                                        .toString(),
+                                    style: styles.paragraphMedium,
+                                  ),
                                 ),
                               ],
                             ),
@@ -129,7 +136,9 @@ class SettingsPage extends GetView<SettingsController> {
                 ),
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Get.to(EmailPage(controller: controller));
+                },
                 child: Container(
                   height: 70,
                   width: double.infinity,

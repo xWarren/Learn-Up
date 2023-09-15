@@ -22,7 +22,7 @@ class LoginPage extends GetView<LoginController> {
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
               child: Image.asset(
                 Assets.loginLogo,
-                height: 250,
+                height: 200,
               ),
             ),
             const Text(
@@ -62,6 +62,24 @@ class LoginPage extends GetView<LoginController> {
                       alignment: Alignment.center,
                     )),
               ],
+            ),
+            const SizedBox(height: 10),
+            Obx(
+              () => Container(
+                margin: const EdgeInsets.symmetric(horizontal: 20),
+                child: Wrap(
+                  children: [
+                    Text(
+                      controller.message.value,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: colors.error),
+                    ),
+                  ],
+                ),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
