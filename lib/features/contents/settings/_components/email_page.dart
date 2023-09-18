@@ -36,7 +36,7 @@ class EmailPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: TextFormField(
-              controller: controller.emailController,
+              controller: controller.courses.emailController,
               textInputAction: TextInputAction.done,
               keyboardType: TextInputType.emailAddress,
               validator: (value) {
@@ -51,7 +51,7 @@ class EmailPage extends StatelessWidget {
                 return null;
               },
               onSaved: (value) {
-                controller.emailController.text = value!;
+                controller.courses.emailController.text = value!;
               },
               decoration: InputDecoration(
                 fillColor: colors.white,

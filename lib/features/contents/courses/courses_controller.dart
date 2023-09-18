@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../core/data/models/courses_models.dart';
 import '../../../core/data/models/info_models.dart';
 import '../../../core/resources/assets.dart';
-import '../profile/profile_controller.dart';
 
 class CoursesController extends GetxController {
   RxBool isFavorite1 = false.obs;
@@ -13,7 +13,13 @@ class CoursesController extends GetxController {
   RxBool isFavorite3 = false.obs;
   User? user = FirebaseAuth.instance.currentUser;
   Rx<Info> loggedInUser = Info().obs;
-  final ProfileController profileController = Get.find();
+  RxString success = ''.obs;
+
+  // ignore: prefer_typing_uninitialized_variables
+  final nameController;
+  // ignore: prefer_typing_uninitialized_variables
+  final emailController;
+  final passwordController = TextEditingController();
 
   List courses = [
     CoursesModels(
@@ -46,6 +52,10 @@ class CoursesController extends GetxController {
     isFavorite = value;
   }
 
+  CoursesController()
+      : emailController = TextEditingController(),
+        nameController = TextEditingController();
+
   @override
   void onInit() {
     update();
@@ -60,6 +70,51 @@ class CoursesController extends GetxController {
         .get()
         .then((value) {
       loggedInUser.value = Info.fromMap(value.data());
+      nameController.text = loggedInUser.value.name.toString();
+      emailController.text = loggedInUser.value.email.toString();
     });
+  }
+
+  void updateCollection() {
+    loggedInUser.value.name =
+        nameController.text; // Extract the email from the controller
+    Map<String, dynamic> dataToUpdate = {
+      'name': loggedInUser.value.name
+          .toString(), // Replace 'email' with the field name you want to update
+    };
+    success.value = "Your name has been updated!";
+
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(user!.uid)
+        .update(dataToUpdate) // Pass the Map to the update method
+        .then((_) {
+      // Successfully updated, navigate to the dashboard
+      Future.delayed(3.seconds);
+      success.value = ""; // Clear the success message
+    }).catchError((error) {
+      // Handle any errors that may occur during the update
+      // ignore: avoid_print
+      print("Error updating document: $error");
+    });
+  }
+
+  var favorite = {}.obs;
+
+  void addFavorite(CoursesModels course) {
+    if (favorite.containsKey(course)) {
+      favorite[course] += 1;
+    } else {
+      favorite[course] = 1;
+    }
+  }
+
+  void removeFavorite(CoursesModels course) {
+    if (favorite.containsKey(course) && favorite[course] == 1) {
+      // Remove the course from favorites when interest reaches zero
+      favorite.remove(course);
+    } else if (favorite.containsKey(course) && favorite[course] > 1) {
+      favorite[course] -= 1;
+    }
   }
 }

@@ -33,14 +33,14 @@ class NamePage extends StatelessWidget {
       body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         Obx(
           () => Text(
-            controller.success.toString(),
+            controller.courses.success.toString(),
             style: styles.paragraphMedium,
           ),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: TextFormField(
-            controller: controller.nameController,
+            controller: controller.courses.nameController,
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.emailAddress,
             validator: (value) {
@@ -54,7 +54,7 @@ class NamePage extends StatelessWidget {
               return null;
             },
             onSaved: (value) {
-              controller.nameController.text = value!;
+              controller.courses.nameController.text = value!;
             },
             decoration: InputDecoration(
               fillColor: colors.white,
@@ -91,7 +91,7 @@ class NamePage extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16))),
             onPressed: () {
-              controller.updateCollection();
+              controller.courses.updateCollection();
             },
             child: const Text(
               strings.update,

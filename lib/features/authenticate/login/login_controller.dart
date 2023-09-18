@@ -21,6 +21,7 @@ class LoginController extends GetxController {
   }
 
   void login(String email, password) async {
+    message.value = "";
     if (key.currentState!.validate()) {
       try {
         await auth.signInWithEmailAndPassword(email: email, password: password);
