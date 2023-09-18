@@ -17,7 +17,7 @@ class LoginPage extends GetView<LoginController> {
         child: SafeArea(
             child: Form(
           key: controller.key,
-          child: Column(children: [
+          child: Column(mainAxisSize: MainAxisSize.min, children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
               child: Image.asset(
@@ -184,8 +184,8 @@ class LoginPage extends GetView<LoginController> {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisSize: MainAxisSize.max,
                 children: [
                   Text(
                     strings.forgotPassword,

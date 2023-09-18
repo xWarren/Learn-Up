@@ -223,11 +223,9 @@ class CoursesPage extends GetView<CoursesController> {
                                 data.isFavorite.value = !data.isFavorite.value;
 
                                 if (!data.isFavorite.value) {
-                                  controller.profileController
-                                      .addFavorite(data);
+                                  controller.addFavorite(data);
                                 } else {
-                                  controller.profileController
-                                      .removeFavorite(data);
+                                  controller.removeFavorite(data);
                                 }
                               },
                               child: Image.asset(

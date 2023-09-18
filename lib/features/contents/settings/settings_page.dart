@@ -122,7 +122,7 @@ class SettingsPage extends GetView<SettingsController> {
                                 ),
                                 Obx(
                                   () => Text(
-                                    controller.loggedInUser.value.name
+                                    controller.courses.loggedInUser.value.name
                                         .toString(),
                                     style: styles.paragraphMedium,
                                   ),
@@ -169,7 +169,7 @@ class SettingsPage extends GetView<SettingsController> {
                                   style: styles.heading20,
                                 ),
                                 Text(
-                                  controller.loggedInUser.value.email
+                                  controller.courses.loggedInUser.value.email
                                       .toString(),
                                   style: styles.paragraphMedium,
                                 ),
