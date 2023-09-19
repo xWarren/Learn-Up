@@ -6,6 +6,7 @@ class CoursesModels {
   final String title;
   final String description;
   final RxBool isFavorite;
+  final RxBool isButtonDisabled;
 
   const CoursesModels({
     required this.image,
@@ -13,5 +14,6 @@ class CoursesModels {
     required this.title,
     required this.description,
     required this.isFavorite,
+    required this.isButtonDisabled,
   });
 }

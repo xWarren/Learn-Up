@@ -33,16 +33,41 @@ class ProfilePage extends GetView<ProfileController> {
           mainAxisSize: MainAxisSize.max,
           children: [
             const SizedBox(height: 30),
-            Center(
-              child: Container(
-                height: 170,
-                decoration: const ShapeDecoration(
-                    color: colors.lightGray,
-                    shape: CircleBorder(
-                        side: BorderSide(
-                            color: colors.secondaryColor, width: 3.0)),
-                    image: DecorationImage(image: AssetImage(Assets.avatar))),
-              ),
+            Stack(
+              clipBehavior: Clip.none,
+              alignment: Alignment.bottomRight,
+              children: [
+                Center(
+                  child: Container(
+                    height: 170,
+                    decoration: const ShapeDecoration(
+                        color: colors.lightGray,
+                        shape: CircleBorder(
+                            side: BorderSide(
+                                color: colors.secondaryColor, width: 3.0)),
+                        image:
+                            DecorationImage(image: AssetImage(Assets.avatar))),
+                  ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 130, vertical: 10),
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(5),
+                    onTap: () {
+                      controller.bottomSheet();
+                    },
+                    child: Container(
+                      height: 30,
+                      decoration: ShapeDecoration(
+                          color: colors.primaryColor,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25))),
+                      child: Image.asset(Assets.pen),
+                    ),
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: 30),
             Container(

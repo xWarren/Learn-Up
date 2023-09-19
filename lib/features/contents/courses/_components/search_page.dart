@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../core/resources/assets.dart';
-import '../../../core/resources/colors.dart' as colors;
-import '../../../core/resources/strings.dart' as strings;
-import '../../../core/resources/text_styles.dart' as styles;
+import '../../../../core/resources/assets.dart';
+import '../../../../core/resources/colors.dart' as colors;
+import '../../../../core/resources/strings.dart' as strings;
+import '../../../../core/resources/text_styles.dart' as styles;
 
 class SearchPage extends StatelessWidget {
   final dynamic controller;

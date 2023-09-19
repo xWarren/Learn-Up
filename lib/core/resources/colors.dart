@@ -12,3 +12,4 @@ const Color success = Color(0xFF5BA092);
 const Color error = Color(0xFFEF4949);
 const Color warning = Color(0xFFF2A03F);
 const Color react = Color(0xFFE6EDF4);
+const Color flutter = Color(0xFFFFF5EE);

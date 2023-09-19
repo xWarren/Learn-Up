@@ -116,11 +116,11 @@ class LoginPage extends GetView<LoginController> {
                   ),
                   errorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: colors.gray),
+                    borderSide: const BorderSide(color: colors.error),
                   ),
                   focusedErrorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: colors.gray),
+                    borderSide: const BorderSide(color: colors.error),
                   ),
                 ),
               ),
@@ -171,11 +171,11 @@ class LoginPage extends GetView<LoginController> {
                     ),
                     errorBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
-                      borderSide: const BorderSide(color: colors.gray),
+                      borderSide: const BorderSide(color: colors.error),
                     ),
                     focusedErrorBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
-                      borderSide: const BorderSide(color: colors.gray),
+                      borderSide: const BorderSide(color: colors.error),
                     ),
                   ),
                 ),

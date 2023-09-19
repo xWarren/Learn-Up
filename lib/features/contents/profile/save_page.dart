@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:learnup/core/data/models/courses_models.dart';
 
 import '../../../core/resources/assets.dart';
 import '../../../core/resources/colors.dart' as colors;
