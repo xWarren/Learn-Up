@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:learnup/features/contents/dashboard/dashboard_controller.dart';
-
 import '../../../core/resources/assets.dart';
 import '../../../core/resources/colors.dart' as colors;
 import '../courses/courses_page.dart';
 import '../profile/profile_page.dart';
 import '../settings/settings_page.dart';
+import 'dashboard_controller.dart';
 
 class DashboardPage extends GetView<DashboardController> {
   const DashboardPage({super.key});

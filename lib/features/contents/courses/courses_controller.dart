@@ -6,13 +6,13 @@ import 'package:get/get.dart';
 import '../../../core/data/models/courses_models.dart';
 import '../../../core/data/models/info_models.dart';
 import '../../../core/resources/assets.dart';
+import '../../../core/routes/routes.dart';
 
 class CoursesController extends GetxController {
-  RxBool isFavorite1 = false.obs;
-  RxBool isFavorite2 = false.obs;
-  RxBool isFavorite3 = false.obs;
   User? user = FirebaseAuth.instance.currentUser;
   Rx<Info> loggedInUser = Info().obs;
+  var favorite = {}.obs;
+  var mycourse = {}.obs;
   RxString success = ''.obs;
 
   // ignore: prefer_typing_uninitialized_variables
@@ -29,6 +29,7 @@ class CoursesController extends GetxController {
       description:
           "Flutter transforms the app development process. Build, test, and deploy beautiful mobile, web, desktop, and embedded apps from a single codebase.",
       isFavorite: true.obs,
+      isButtonDisabled: false.obs,
     ),
     CoursesModels(
       image: Assets.reactLogo,
@@ -37,6 +38,7 @@ class CoursesController extends GetxController {
       description:
           "React Native combines the best parts of native development with React, a best-in-class JavaScript library for building user interfaces",
       isFavorite: true.obs,
+      isButtonDisabled: false.obs,
     ),
     CoursesModels(
       image: Assets.kotlinLogo,
@@ -45,12 +47,9 @@ class CoursesController extends GetxController {
       description:
           "Kotlin is a cross-platform, statically typed, general-purpose high-level programming language with type inference. Kotlin is designed to interoperate fully with Java, and the JVM version of Kotlin's standard library depends on the Java Class Library, but type inference allows its syntax to be more concise.",
       isFavorite: true.obs,
+      isButtonDisabled: false.obs,
     ),
   ];
-
-  set isFavorite(bool value) {
-    isFavorite = value;
-  }
 
   CoursesController()
       : emailController = TextEditingController(),
@@ -90,8 +89,7 @@ class CoursesController extends GetxController {
         .update(dataToUpdate) // Pass the Map to the update method
         .then((_) {
       // Successfully updated, navigate to the dashboard
-      Future.delayed(3.seconds);
-      success.value = ""; // Clear the success message
+      Future.delayed(2.seconds, clearText);
     }).catchError((error) {
       // Handle any errors that may occur during the update
       // ignore: avoid_print
@@ -99,7 +97,10 @@ class CoursesController extends GetxController {
     });
   }
 
-  var favorite = {}.obs;
+  void clearText() {
+    success.value = '';
+    Get.offAndToNamed(Routes.dashboard);
+  }
 
   void addFavorite(CoursesModels course) {
     if (favorite.containsKey(course)) {
@@ -117,4 +118,16 @@ class CoursesController extends GetxController {
       favorite[course] -= 1;
     }
   }
+
+  void addCourse(CoursesModels course) {
+    if (mycourse.containsKey(course)) {
+      mycourse[course] == 1;
+    } else {
+      mycourse[course] = 1;
+    }
+    course.isButtonDisabled.value = mycourse.isNotEmpty;
+  }
+
+  get favorites => favorite;
+  get mycourses => mycourse;
 }

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:learnup/features/authenticate/login/login_controller.dart';
 import '../../../core/resources/assets.dart';
 import '../../../core/resources/colors.dart' as colors;
 import '../../../core/resources/strings.dart' as strings;
 import '../../../core/resources/text_styles.dart' as styles;
+import 'login_controller.dart';
 
 class LoginPage extends GetView<LoginController> {
   const LoginPage({super.key});
@@ -116,11 +116,11 @@ class LoginPage extends GetView<LoginController> {
                   ),
                   errorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: colors.gray),
+                    borderSide: const BorderSide(color: colors.error),
                   ),
                   focusedErrorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: const BorderSide(color: colors.gray),
+                    borderSide: const BorderSide(color: colors.error),
                   ),
                 ),
               ),
@@ -171,11 +171,11 @@ class LoginPage extends GetView<LoginController> {
                     ),
                     errorBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
-                      borderSide: const BorderSide(color: colors.gray),
+                      borderSide: const BorderSide(color: colors.error),
                     ),
                     focusedErrorBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
-                      borderSide: const BorderSide(color: colors.gray),
+                      borderSide: const BorderSide(color: colors.error),
                     ),
                   ),
                 ),

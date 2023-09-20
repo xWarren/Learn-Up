@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 
-import 'package:learnup/features/contents/dashboard/dashboard_controller.dart';
 import '../courses/courses_controller.dart';
 import '../profile/profile_controller.dart';
 import '../settings/settings_controller.dart';
+import 'dashboard_controller.dart';
 
 class DashboardBinding extends Bindings {
   @override

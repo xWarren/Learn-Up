@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:learnup/features/contents/courses/courses_controller.dart';
-import 'package:learnup/features/contents/courses/search_page.dart';
+import 'package:learnup/features/contents/courses/_components/search_page.dart';
 import '../../../core/resources/assets.dart';
 import '../../../core/resources/colors.dart' as colors;
 import '../../../core/resources/text_styles.dart' as styles;
+import '_components/view_course.dart';
+import 'courses_controller.dart';
 
 class CoursesPage extends GetView<CoursesController> {
   const CoursesPage({super.key});
@@ -175,95 +176,104 @@ class CoursesPage extends GetView<CoursesController> {
             shrinkWrap: true,
             itemBuilder: (context, index) {
               var data = controller.courses[index];
-              return Container(
-                margin:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-                decoration: ShapeDecoration(
-                    color: colors.white,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        side: const BorderSide(
-                          color: colors.darkGray,
-                        ))),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      height: 150,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          color: colors.lightGray,
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(8),
-                            topRight: Radius.circular(8),
-                          ),
-                          image: DecorationImage(
-                              fit: BoxFit.contain,
-                              image: AssetImage(
-                                data.image,
-                              ))),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 10),
-                      child: Obx(
-                        () => Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              data.time,
-                              style: const TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500,
-                                color: colors.success,
-                              ),
+              return GestureDetector(
+                onTap: () {
+                  Get.to(ViewCoursePage(
+                    controller: controller,
+                    data: data,
+                  ));
+                },
+                child: Container(
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                  decoration: ShapeDecoration(
+                      color: colors.white,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          side: const BorderSide(
+                            color: colors.darkGray,
+                          ))),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        height: 150,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            color: colors.lightGray,
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(8),
+                              topRight: Radius.circular(8),
                             ),
-                            GestureDetector(
-                              onTap: () {
-                                data.isFavorite.value = !data.isFavorite.value;
-
-                                if (!data.isFavorite.value) {
-                                  controller.addFavorite(data);
-                                } else {
-                                  controller.removeFavorite(data);
-                                }
-                              },
-                              child: Image.asset(
-                                data.isFavorite.value
-                                    ? Assets.heart
-                                    : Assets.heartFilled,
+                            image: DecorationImage(
+                                fit: BoxFit.contain,
+                                image: AssetImage(
+                                  data.image,
+                                ))),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 10),
+                        child: Obx(
+                          () => Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                data.time,
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w500,
+                                  color: colors.success,
+                                ),
                               ),
-                            )
-                          ],
+                              GestureDetector(
+                                onTap: () {
+                                  data.isFavorite.value =
+                                      !data.isFavorite.value;
+
+                                  if (!data.isFavorite.value) {
+                                    controller.addFavorite(data);
+                                  } else {
+                                    controller.removeFavorite(data);
+                                  }
+                                },
+                                child: Image.asset(
+                                  data.isFavorite.value
+                                      ? Assets.heart
+                                      : Assets.heartFilled,
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 5,
-                      ),
-                      child: Text(
-                        data.title,
-                        style: styles.heading24,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                      ),
-                      child: Text(
-                        data.description,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          color: colors.dark,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 5,
+                        ),
+                        child: Text(
+                          data.title,
+                          style: styles.heading24,
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 10),
-                  ],
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20,
+                        ),
+                        child: Text(
+                          data.description,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontSize: 14,
+                            color: colors.dark,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                    ],
+                  ),
                 ),
               );
             },

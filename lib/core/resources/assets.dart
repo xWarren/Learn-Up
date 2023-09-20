@@ -44,4 +44,8 @@ class Assets {
   static const reactLogo = "${path}react.png";
   static const heart = "${path}heart.png";
   static const heartFilled = "${path}heart_filled.png";
+  static const pen = "${path}ic_pen.png";
+  static const camera = "${path}ic_camera.png";
+  static const gallery = "${path}ic_gallery.png";
+  static const trash = "${path}ic_trash.png";
 }

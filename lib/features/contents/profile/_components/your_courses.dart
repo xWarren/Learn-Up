@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../core/data/models/courses_models.dart';
-import '../../../core/resources/assets.dart';
-import '../../../core/resources/colors.dart' as colors;
-import '../../../core/resources/strings.dart' as strings;
-import '../../../core/resources/text_styles.dart' as styles;
+import '../../../../core/data/models/courses_models.dart';
+import '../../../../core/resources/assets.dart';
+import '../../../../core/resources/colors.dart' as colors;
+import '../../../../core/resources/strings.dart' as strings;
+import '../../../../core/resources/text_styles.dart' as styles;
 
-class SavedPage extends StatelessWidget {
+class YourCoursesPage extends StatelessWidget {
   final dynamic controller;
-  const SavedPage({required this.controller, super.key});
+  const YourCoursesPage({required this.controller, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,18 +27,20 @@ class SavedPage extends StatelessWidget {
           automaticallyImplyLeading: false,
           centerTitle: true,
           title: const Text(
-            strings.saved,
+            strings.yourCourses,
             style: styles.heading24,
           ),
         ),
         body: Column(mainAxisSize: MainAxisSize.min, children: [
           Expanded(
             child: ListView.builder(
-                itemCount: controller.courses.favorites.length,
+                itemCount: controller.courses.mycourses.length,
+                shrinkWrap: true,
                 itemBuilder: (context, index) {
-                  return DataBuilder(
-                    data: controller.courses.favorites.keys.toList()[index],
+                  return ListPages(
                     index: index,
+                    courses: controller.courses.mycourses.keys.toList()[index],
+                    controller: controller,
                   );
                 }),
           )
@@ -46,15 +48,15 @@ class SavedPage extends StatelessWidget {
   }
 }
 
-class DataBuilder extends StatelessWidget {
-  const DataBuilder({
-    super.key,
-    required this.data,
-    required this.index,
-  });
-
-  final CoursesModels data;
+class ListPages extends StatelessWidget {
   final int index;
+  final CoursesModels courses;
+  final dynamic controller;
+  const ListPages(
+      {required this.index,
+      required this.courses,
+      required this.controller,
+      super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +84,7 @@ class DataBuilder extends StatelessWidget {
                 image: DecorationImage(
                     fit: BoxFit.contain,
                     image: AssetImage(
-                      data.image,
+                      courses.image,
                     ))),
           ),
           Padding(
@@ -91,7 +93,7 @@ class DataBuilder extends StatelessWidget {
               vertical: 5,
             ),
             child: Text(
-              data.title,
+              courses.title,
               style: styles.heading24,
             ),
           ),
@@ -100,7 +102,7 @@ class DataBuilder extends StatelessWidget {
               horizontal: 20,
             ),
             child: Text(
-              data.description,
+              courses.description,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(
