@@ -12,7 +12,7 @@ class CoursesController extends GetxController {
   User? user = FirebaseAuth.instance.currentUser;
   Rx<Info> loggedInUser = Info().obs;
   var favorite = {}.obs;
-  var mycourses = {}.obs;
+  var mycourse = {}.obs;
   RxString success = ''.obs;
 
   // ignore: prefer_typing_uninitialized_variables
@@ -120,11 +120,14 @@ class CoursesController extends GetxController {
   }
 
   void addCourse(CoursesModels course) {
-    if (mycourses.containsKey(course)) {
-      mycourses[course] == 1;
+    if (mycourse.containsKey(course)) {
+      mycourse[course] == 1;
     } else {
-      mycourses[course] = 1;
+      mycourse[course] = 1;
     }
-    course.isButtonDisabled.value = courses.isNotEmpty;
+    course.isButtonDisabled.value = mycourse.isNotEmpty;
   }
+
+  get favorites => favorite;
+  get mycourses => mycourse;
 }

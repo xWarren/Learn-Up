@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:learnup/features/contents/courses/_components/view_course.dart';
 
-import 'package:learnup/features/contents/courses/courses_controller.dart';
 import 'package:learnup/features/contents/courses/_components/search_page.dart';
 import '../../../core/resources/assets.dart';
 import '../../../core/resources/colors.dart' as colors;
 import '../../../core/resources/text_styles.dart' as styles;
+import '_components/view_course.dart';
+import 'courses_controller.dart';
 
 class CoursesPage extends GetView<CoursesController> {
   const CoursesPage({super.key});

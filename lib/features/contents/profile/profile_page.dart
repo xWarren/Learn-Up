@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:learnup/core/resources/assets.dart';
 
-import 'package:learnup/features/contents/profile/profile_controller.dart';
-import 'package:learnup/features/contents/profile/save_page.dart';
+import '../../../core/resources/assets.dart';
 import '../../../core/resources/colors.dart' as colors;
 import '../../../core/resources/strings.dart' as strings;
 import '../../../core/resources/text_styles.dart' as styles;
+import '_components/your_courses.dart';
+import 'profile_controller.dart';
+import 'save_page.dart';
 
 class ProfilePage extends GetView<ProfileController> {
   const ProfilePage({super.key});
@@ -75,7 +76,11 @@ class ProfilePage extends GetView<ProfileController> {
               width: double.infinity,
               height: 70,
               child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(YourCoursesPage(
+                      controller: controller,
+                    ));
+                  },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: colors.white,
                       elevation: 0,
@@ -104,24 +109,6 @@ class ProfilePage extends GetView<ProfileController> {
                           side: const BorderSide(color: colors.gray))),
                   child: const Text(
                     strings.saved,
-                    style: styles.heading24,
-                  )),
-            ),
-            const SizedBox(height: 10),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              width: double.infinity,
-              height: 70,
-              child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: colors.white,
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                          side: const BorderSide(color: colors.gray))),
-                  child: const Text(
-                    strings.payment,
                     style: styles.heading24,
                   )),
             ),
