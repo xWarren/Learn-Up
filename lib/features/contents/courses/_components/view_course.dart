@@ -41,7 +41,7 @@ class ViewCoursePage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.asset(data.image),
+                Image.network(data.image),
                 const SizedBox(height: 20),
                 const Text(
                   strings.aboutTheCourse,
@@ -61,12 +61,38 @@ class ViewCoursePage extends StatelessWidget {
                   style: styles.heading20,
                 ),
                 const SizedBox(height: 10),
-                Text(
-                  data.time,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    color: colors.dark,
-                  ),
+                Row(
+                  children: [
+                    Text(
+                      data.hours,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: colors.dark,
+                      ),
+                    ),
+                    const Text(
+                      'h',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: colors.dark,
+                      ),
+                    ),
+                    const SizedBox(width: 5),
+                    Text(
+                      data.minutes,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: colors.dark,
+                      ),
+                    ),
+                    const Text(
+                      'min',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: colors.dark,
+                      ),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 10),
               ],

@@ -41,8 +41,8 @@ class NamePage extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: TextFormField(
             controller: controller.courses.nameController,
-            textInputAction: TextInputAction.next,
-            keyboardType: TextInputType.emailAddress,
+            textInputAction: TextInputAction.done,
+            keyboardType: TextInputType.name,
             validator: (value) {
               RegExp regex = RegExp(r'^[A-Z-a-z]{1,}$');
               if (value!.isEmpty) {

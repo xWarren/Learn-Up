@@ -31,20 +31,54 @@ class YourCoursesPage extends StatelessWidget {
             style: styles.heading24,
           ),
         ),
-        body: Column(mainAxisSize: MainAxisSize.min, children: [
-          Expanded(
-            child: ListView.builder(
-                itemCount: controller.courses.mycourses.length,
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return ListPages(
-                    index: index,
-                    courses: controller.courses.mycourses.keys.toList()[index],
-                    controller: controller,
-                  );
-                }),
-          )
-        ]));
+        body: controller.courses.mycourses.length == 0
+            ? Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(Assets.notSaved),
+                  const SizedBox(height: 10),
+                  const Text(
+                    strings.courseNotSaved,
+                    style: styles.heading24,
+                  ),
+                  const SizedBox(height: 5),
+                  const Text(
+                    strings.trySaving,
+                    style: styles.paragraphMedium,
+                  ),
+                  Container(
+                    height: 50,
+                    width: Get.width,
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 30, vertical: 30),
+                    child: ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: colors.primaryColor,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16))),
+                        child: const Text(
+                          strings.continuee,
+                          style: styles.buttonMedium,
+                        )),
+                  )
+                ],
+              )
+            : Column(mainAxisSize: MainAxisSize.min, children: [
+                Expanded(
+                  child: ListView.builder(
+                      itemCount: controller.courses.mycourses.length,
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        return ListPages(
+                          index: index,
+                          courses:
+                              controller.courses.mycourses.keys.toList()[index],
+                          controller: controller,
+                        );
+                      }),
+                )
+              ]));
   }
 }
 
@@ -83,7 +117,7 @@ class ListPages extends StatelessWidget {
                 ),
                 image: DecorationImage(
                     fit: BoxFit.contain,
-                    image: AssetImage(
+                    image: NetworkImage(
                       courses.image,
                     ))),
           ),
