@@ -8,7 +8,7 @@ import '../../../core/resources/strings.dart' as strings;
 import '../../../core/resources/text_styles.dart' as styles;
 import '_components/your_courses.dart';
 import 'profile_controller.dart';
-import 'save_page.dart';
+import '_components/save_page.dart';
 
 class ProfilePage extends GetView<ProfileController> {
   const ProfilePage({super.key});

@@ -7,7 +7,6 @@ import 'package:learnup/features/contents/settings/settings_controller.dart';
 import '../../../core/resources/colors.dart' as colors;
 import '../../../core/resources/strings.dart' as strings;
 import '../../../core/resources/text_styles.dart' as styles;
-import '_components/email_page.dart';
 import '_components/name_page.dart';
 
 class SettingsPage extends GetView<SettingsController> {
@@ -135,94 +134,82 @@ class SettingsPage extends GetView<SettingsController> {
                       ]),
                 ),
               ),
-              GestureDetector(
-                onTap: () {
-                  Get.to(EmailPage(controller: controller));
-                },
-                child: Container(
-                  height: 70,
-                  width: double.infinity,
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  decoration: ShapeDecoration(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                          side: const BorderSide(color: colors.gray))),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              backgroundColor: colors.secondaryColor,
-                              child: Image.asset(Assets.email),
-                            ),
-                            const SizedBox(width: 10),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                const Text(
-                                  strings.email,
-                                  style: styles.heading20,
-                                ),
-                                Text(
-                                  controller.courses.loggedInUser.value.email
-                                      .toString(),
-                                  style: styles.paragraphMedium,
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        Image.asset(Assets.next),
-                      ]),
-                ),
+              Container(
+                height: 70,
+                width: double.infinity,
+                margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                decoration: ShapeDecoration(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        side: const BorderSide(color: colors.gray))),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          CircleAvatar(
+                            backgroundColor: colors.secondaryColor,
+                            child: Image.asset(Assets.email),
+                          ),
+                          const SizedBox(width: 10),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Text(
+                                strings.email,
+                                style: styles.heading20,
+                              ),
+                              Text(
+                                controller.courses.loggedInUser.value.email
+                                    .toString(),
+                                style: styles.paragraphMedium,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ]),
               ),
-              GestureDetector(
-                onTap: () {},
-                child: Container(
-                  height: 70,
-                  width: double.infinity,
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  decoration: ShapeDecoration(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                          side: const BorderSide(color: colors.gray))),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              backgroundColor: colors.secondaryColor,
-                              child: Image.asset(Assets.password),
-                            ),
-                            const SizedBox(width: 10),
-                            const Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(
-                                  strings.password,
-                                  style: styles.heading20,
-                                ),
-                                Text(
-                                  strings.passwordChanged,
-                                  style: styles.paragraphMedium,
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        Image.asset(Assets.next),
-                      ]),
-                ),
+              Container(
+                height: 70,
+                width: double.infinity,
+                margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                decoration: ShapeDecoration(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        side: const BorderSide(color: colors.gray))),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          CircleAvatar(
+                            backgroundColor: colors.secondaryColor,
+                            child: Image.asset(Assets.password),
+                          ),
+                          const SizedBox(width: 10),
+                          const Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                strings.password,
+                                style: styles.heading20,
+                              ),
+                              Text(
+                                strings.passwordChanged,
+                                style: styles.paragraphMedium,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ]),
               ),
             ],
           ),

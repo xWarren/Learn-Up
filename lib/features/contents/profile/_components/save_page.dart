@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../core/data/models/courses_models.dart';
-import '../../../core/resources/assets.dart';
-import '../../../core/resources/colors.dart' as colors;
-import '../../../core/resources/strings.dart' as strings;
-import '../../../core/resources/text_styles.dart' as styles;
+import '../../../../core/data/models/courses_models.dart';
+import '../../../../core/resources/assets.dart';
+import '../../../../core/resources/colors.dart' as colors;
+import '../../../../core/resources/strings.dart' as strings;
+import '../../../../core/resources/text_styles.dart' as styles;
 
 class SavedPage extends StatelessWidget {
   final dynamic controller;
@@ -31,18 +31,52 @@ class SavedPage extends StatelessWidget {
             style: styles.heading24,
           ),
         ),
-        body: Column(mainAxisSize: MainAxisSize.min, children: [
-          Expanded(
-            child: ListView.builder(
-                itemCount: controller.courses.favorites.length,
-                itemBuilder: (context, index) {
-                  return DataBuilder(
-                    data: controller.courses.favorites.keys.toList()[index],
-                    index: index,
-                  );
-                }),
-          )
-        ]));
+        body: controller.courses.favorites.length == 0
+            ? Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(Assets.notSaved),
+                  const SizedBox(height: 10),
+                  const Text(
+                    strings.courseNotSaved,
+                    style: styles.heading24,
+                  ),
+                  const SizedBox(height: 5),
+                  const Text(
+                    strings.trySaving,
+                    style: styles.paragraphMedium,
+                  ),
+                  Container(
+                    height: 50,
+                    width: Get.width,
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 30, vertical: 30),
+                    child: ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: colors.primaryColor,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16))),
+                        child: const Text(
+                          strings.continuee,
+                          style: styles.buttonMedium,
+                        )),
+                  )
+                ],
+              )
+            : Column(mainAxisSize: MainAxisSize.min, children: [
+                Expanded(
+                  child: ListView.builder(
+                      itemCount: controller.courses.favorites.length,
+                      itemBuilder: (context, index) {
+                        return DataBuilder(
+                          data:
+                              controller.courses.favorites.keys.toList()[index],
+                          index: index,
+                        );
+                      }),
+                )
+              ]));
   }
 }
 
@@ -81,7 +115,7 @@ class DataBuilder extends StatelessWidget {
                 ),
                 image: DecorationImage(
                     fit: BoxFit.contain,
-                    image: AssetImage(
+                    image: NetworkImage(
                       data.image,
                     ))),
           ),
