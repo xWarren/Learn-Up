@@ -34,7 +34,7 @@ class CoursesPage extends GetView<CoursesController> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Text("Hello,",
+                                const Text(strings.hello,
                                     style: TextStyle(
                                       fontSize: 16,
                                       color: colors.dark,
@@ -76,7 +76,7 @@ class CoursesPage extends GetView<CoursesController> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const Text("Search course",
+                              const Text(strings.searchCourse,
                                   style: styles.paragraphMedium),
                               Image.asset(Assets.search)
                             ],
@@ -95,7 +95,7 @@ class CoursesPage extends GetView<CoursesController> {
               child: Row(
                 children: [
                   const Text(
-                    "Category:",
+                    strings.category,
                     style: TextStyle(
                       fontSize: 14,
                       color: colors.dark,
@@ -174,7 +174,7 @@ class CoursesPage extends GetView<CoursesController> {
               ),
             ),
             // ignore: unrelated_type_equality_checks
-            controller.course.length == controller.course.isEmpty
+            controller.course.isEmpty
                 ? Shimmer.fromColors(
                     baseColor: Colors.grey.shade300,
                     highlightColor: Colors.grey.shade100,
@@ -189,97 +189,6 @@ class CoursesPage extends GetView<CoursesController> {
                               side: const BorderSide(
                                 color: colors.darkGray,
                               ))),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: 150,
-                            alignment: Alignment.center,
-                            decoration: const BoxDecoration(
-                                color: colors.lightGray,
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(8),
-                                  topRight: Radius.circular(8),
-                                ),
-                                image: DecorationImage(
-                                    fit: BoxFit.contain,
-                                    image: AssetImage(
-                                      Assets.avatar,
-                                    ))),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 10),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      strings.yourCourses,
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w500,
-                                        color: colors.success,
-                                      ),
-                                    ),
-                                    Text(
-                                      "h",
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w500,
-                                        color: colors.success,
-                                      ),
-                                    ),
-                                    SizedBox(width: 5),
-                                    Text(
-                                      strings.yourCourses,
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w500,
-                                        color: colors.success,
-                                      ),
-                                    ),
-                                    Text(
-                                      "min",
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w500,
-                                        color: colors.success,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 20,
-                              vertical: 5,
-                            ),
-                            child: Text(
-                              strings.yourCourses,
-                              style: styles.heading24,
-                            ),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 20,
-                            ),
-                            child: Text(
-                              strings.yourCourses,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: colors.dark,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 10),
-                        ],
-                      ),
                     ),
                   )
                 : ListView.builder(

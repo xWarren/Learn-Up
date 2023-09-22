@@ -23,6 +23,9 @@ const String forgotPassword = "Forgot Password?";
 const String signUp = "Sign up";
 
 /* DASHBOARD */
+const String hello = "Hello";
+const String searchCourse = "Search course";
+const String category = "Category:";
 const String profile = "Profile";
 const String settings = "Settings";
 const String yourCourses = "Your Courses";

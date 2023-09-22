@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_null_comparison
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -15,114 +17,141 @@ class ProfilePage extends GetView<ProfileController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarColor: colors.white,
-          statusBarIconBrightness: Brightness.dark,
+    return Obx(
+      () => Scaffold(
+        appBar: AppBar(
+          systemOverlayStyle: const SystemUiOverlayStyle(
+            statusBarColor: colors.white,
+            statusBarIconBrightness: Brightness.dark,
+          ),
+          elevation: 0,
+          automaticallyImplyLeading: false,
+          centerTitle: true,
+          title: const Text(
+            strings.profile,
+            style: styles.heading24,
+          ),
         ),
-        elevation: 0,
-        automaticallyImplyLeading: false,
-        centerTitle: true,
-        title: const Text(
-          strings.profile,
-          style: styles.heading24,
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            const SizedBox(height: 30),
-            Stack(
-              clipBehavior: Clip.none,
-              alignment: Alignment.bottomRight,
-              children: [
-                Center(
-                  child: Container(
-                    height: 170,
-                    decoration: const ShapeDecoration(
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              const SizedBox(height: 30),
+              Stack(
+                clipBehavior: Clip.none,
+                alignment: Alignment.bottomRight,
+                children: [
+                  Center(
+                    child: Container(
+                      height: 170,
+                      decoration: const ShapeDecoration(
                         color: colors.lightGray,
                         shape: CircleBorder(
                             side: BorderSide(
                                 color: colors.secondaryColor, width: 3.0)),
-                        image:
-                            DecorationImage(image: AssetImage(Assets.avatar))),
-                  ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 130, vertical: 10),
-                  child: InkWell(
-                    borderRadius: BorderRadius.circular(5),
-                    onTap: () {
-                      controller.bottomSheet();
-                    },
-                    child: Container(
-                      height: 30,
-                      decoration: ShapeDecoration(
-                          color: colors.primaryColor,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(25))),
-                      child: Image.asset(Assets.pen),
+                      ),
+                      child: controller
+                                  .courses.loggedInUser.value.imageURL!.value !=
+                              null
+                          ? CircleAvatar(
+                              radius: 74,
+                              backgroundImage: NetworkImage(controller
+                                  .courses.loggedInUser.value.imageURL!.value),
+                            )
+                          : CircleAvatar(
+                              radius: 64,
+                              backgroundImage: NetworkImage(controller.noImage),
+                            ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 30),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              width: double.infinity,
-              height: 70,
-              child: ElevatedButton(
-                  onPressed: () {
-                    Get.to(YourCoursesPage(
-                      controller: controller,
-                    ));
-                  },
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: colors.white,
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                          side: const BorderSide(color: colors.gray))),
-                  child: const Text(
-                    strings.yourCourses,
-                    style: styles.heading24,
-                  )),
-            ),
-            const SizedBox(height: 10),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              width: double.infinity,
-              height: 70,
-              child: ElevatedButton(
-                  onPressed: () {
-                    Get.to(SavedPage(controller: controller));
-                  },
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: colors.white,
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                          side: const BorderSide(color: colors.gray))),
-                  child: const Text(
-                    strings.saved,
-                    style: styles.heading24,
-                  )),
-            ),
-            const SizedBox(height: 30),
-            GestureDetector(
-              onTap: () {
-                controller.signOut();
-              },
-              child: const Text(
-                strings.logout,
-                style: styles.buttonSmall,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 130, vertical: 10),
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(5),
+                      onTap: () {
+                        controller.bottomSheet();
+                      },
+                      child: Container(
+                        height: 30,
+                        decoration: ShapeDecoration(
+                            color: colors.primaryColor,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(25))),
+                        child: Image.asset(Assets.pen),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            )
-          ],
+              controller.isImageUploaded.value
+                  ? SizedBox(
+                      width: Get.width / 2,
+                      height: 50,
+                      child: ElevatedButton(
+                        onPressed: controller.saveProfile,
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: colors.primaryColor,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16))),
+                        child: const Text('Save Profile'),
+                      ),
+                    )
+                  : const SizedBox.shrink(),
+              const SizedBox(height: 30),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                width: double.infinity,
+                height: 70,
+                child: ElevatedButton(
+                    onPressed: () {
+                      Get.to(YourCoursesPage(
+                        controller: controller,
+                      ));
+                    },
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: colors.white,
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                            side: const BorderSide(color: colors.gray))),
+                    child: const Text(
+                      strings.yourCourses,
+                      style: styles.heading24,
+                    )),
+              ),
+              const SizedBox(height: 10),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                width: double.infinity,
+                height: 70,
+                child: ElevatedButton(
+                    onPressed: () {
+                      Get.to(SavedPage(controller: controller));
+                    },
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: colors.white,
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                            side: const BorderSide(color: colors.gray))),
+                    child: const Text(
+                      strings.saved,
+                      style: styles.heading24,
+                    )),
+              ),
+              const SizedBox(height: 30),
+              GestureDetector(
+                onTap: () {
+                  controller.signOut();
+                },
+                child: const Text(
+                  strings.logout,
+                  style: styles.buttonSmall,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
