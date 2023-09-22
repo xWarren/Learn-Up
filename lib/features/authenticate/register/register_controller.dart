@@ -10,6 +10,8 @@ class RegisterController extends GetxController {
   final keyForm = GlobalKey<FormState>();
   final auth = FirebaseAuth.instance;
   final nameController = TextEditingController();
+  final imageURL =
+      "https://png.pngitem.com/pimgs/s/421-4212266_transparent-default-avatar-png-default-avatar-images-png.png";
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   late Rx<User?> user;
@@ -51,6 +53,7 @@ class RegisterController extends GetxController {
 
     //writing the value to send in server
     userClass.email = user!.email;
+    userClass.imageURL = imageURL.obs;
     userClass.uid = user.uid;
     userClass.name = nameController.text;
 
@@ -61,10 +64,10 @@ class RegisterController extends GetxController {
     Future.delayed(3.seconds, () => Get.offAndToNamed(Routes.dashboard));
   }
 
-  Future addUsersDetails(String name, String email) async {
+  Future addUsersDetails(String name, String email, String imageURL) async {
     await FirebaseFirestore.instance
         .collection('users')
-        .add({'email': email, 'name': name});
+        .add({'email': email, 'name': name, 'imageURL': imageURL.obs});
   }
 
   Future updateData(String email) async {
